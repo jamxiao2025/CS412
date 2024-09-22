@@ -1,0 +1,23 @@
+{% extends 'quotes/base.html' %}
+{%load static%}
+{% block content %}
+    <div class="allBox">
+        <div>
+            <h1>quotes</h1>
+            <div class="allSubBox">
+                {%for quote in quotes%}
+                <p>{{quote}}</p>
+        {%endfor%}
+            </div>
+        </div>
+        <div>
+            <h1>images</h1>
+            <div class="allSubBox">
+                {%for image in images%}
+                    <img src="{%static image%}" width="300px"/>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}

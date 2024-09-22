@@ -1,0 +1,10 @@
+{% extends 'quotes/base.html' %}
+{%load static%}
+{% block content %}
+<div class="quote">
+    <div class="quoteImageBox">
+        <img src="{% static image_path %}">
+        <h2>{{quote}}</h2>
+    </div>
+</div>
+{% endblock %}
