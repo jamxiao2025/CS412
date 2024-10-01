@@ -1,0 +1,25 @@
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <header>
+        <h1>James & Friends</h1>
+        <nav>
+                <a href="{% url 'main' %}">HOME</a>
+                <a href="{% url 'order' %}">ORDER ONLINE</a>
+        </nav>
+    </header>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+    <footer>
+        <p>&copy; 2024 James & Friends</p>
+    </footer>
+</body>
+</html>

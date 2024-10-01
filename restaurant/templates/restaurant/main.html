@@ -1,0 +1,11 @@
+{% extends 'restaurant/base.html' %}
+{% load static %}
+{% block content %}
+<h2>Restaurant Information</h2>
+<p>Name: James & Friends</p>
+<p>Location: 631 Main Street, Santa Clara, CA</p>
+<h3>Hours of Operation</h3>
+    <p>Monday - Friday: 11 AM - 10 PM</p>
+    <p>Saturday - Sunday: 12 PM - 9 PM</p>
+<img src="{% static 'mosu.jpeg' %}" alt="Restaurant Photo" width="300">
+{% endblock %}
