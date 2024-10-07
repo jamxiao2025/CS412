@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     'quotes',
-    'restaurant'
+    'restaurant',
+    'mini_fb'
 ]
 
 MIDDLEWARE = [
