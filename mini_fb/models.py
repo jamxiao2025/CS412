@@ -1,6 +1,8 @@
+# File: models.py
+# Author: James Xiao (jamxiao@bu.edu), 10/07/2024
+# Description: urls file to specify routing for mini_fb app.
 from django.db import models
 
-# Create your models here.
 class Profile(models.Model):
     '''Encapsulates a profile'''
 
