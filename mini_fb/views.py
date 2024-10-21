@@ -2,7 +2,7 @@
 # Author: James Xiao (jamxiao@bu.edu), 10/07/2024
 # Description: file to specify the views that will handle requests for mini_fb app.
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import * 
 from .forms import * 
 # Create your views here.
@@ -25,7 +25,7 @@ class CreateProfileView(CreateView):
 
 class CreateStatusMessageView(CreateView):
     form_class = CreateStatusMessageForm
-    template_name = "mini_fb/create_status_message_form.html"
+    template_name = "mini_fb/create_status_form.html"
     def get_context_data(self, **kwargs):
 
         # get the context data from the sueprclass
@@ -41,6 +41,7 @@ class CreateStatusMessageView(CreateView):
             '''This method is called after the form is validated, 
             before saving data to the database.'''
 
+            files = self.request.FILES.getlist('files')
             print(f'CreateStatusMessageView.form_valid(): form={form.cleaned_data}')
             print(f'CreateStatusMessageView.form_valid(): self.kwargs={self.kwargs}')
 
@@ -49,6 +50,13 @@ class CreateStatusMessageView(CreateView):
 
             # attach this Article to the instance of the Comment to set its FK
             form.instance.profile = profile # like: comment.article = article
+            sm = form.save() # reference to new sm object 
+            for file in files:
+                # Create a new Image object for each file
+                image = Image()
+                image.image_file = file 
+                image.status = sm
+                image.save()
 
             # delegate work to superclass version of this method
             return super().form_valid(form)
@@ -61,3 +69,28 @@ class CreateStatusMessageView(CreateView):
             profile = Profile.objects.get(pk=self.kwargs['pk'])
             return reverse('show_profile', kwargs={'pk':profile.pk})
             # return reverse('article', kwargs=self.kwargs)
+    
+class UpdateProfileForm(UpdateView):
+    model = Profile
+    form_class = UpdateProfileForm
+    template_name = 'mini_fb/update_profile_form.html'
+    context_object_name = 'profile'
+    
+class DeleteStatusMessageView(DeleteView):
+     model = StatusMessage
+     template_name = 'mini_fb/delete_status_form.html'
+     context_object_name = 'status'
+     def get_success_url(self) -> str:
+          '''Redirect to profile page after deletion'''
+          profile = self.object.profile
+          return reverse('show_profile', kwargs={'pk': profile.pk})
+     
+class UpdateStatusMessageView(UpdateView):
+     model = StatusMessage
+     template_name = "mini_fb/update_status_form.html"
+     context_object_name = 'status'
+     fields=['message']
+     def get_success_url(self) -> str:
+        '''Redirect to profile page after deletion'''
+        profile = self.object.profile
+        return reverse('show_profile', kwargs={'pk': profile.pk})
