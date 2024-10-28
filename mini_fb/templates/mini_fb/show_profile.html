@@ -3,40 +3,60 @@
 {% block content %}
     <h2>{{ profile.first_name }} {{profile.last_name}}'s Profile</h2>
     
-    <div class="profile-details">
-        <img src="{{ profile.profile_image_url }}" alt="{{ profile.user.username }}" class="large-profile-img">
-        <p><strong>Location:</strong> {{ profile.city }}</p>
-        <p><strong>Email:</strong> {{ profile.email }}</p>
-        <p><strong>Address:</strong> {{ profile.address }}</p>
+    <div class="profile-header">
+        <div class="profile-details">
+            <img src="{{ profile.profile_image_url }}" alt="{{ profile.user.username }}" class="large-profile-img">
+            <p><strong>Location:</strong> {{ profile.city }}</p>
+            <p><strong>Email:</strong> {{ profile.email }}</p>
+            <p><strong>Address:</strong> {{ profile.address }}</p>
+    
+            <!-- Add any other attributes you want to display -->
+        </div>
+    </div>
+    
+    <div class="status-section">
+        <h3>Status Message(s)</h3>
+        <div class="status">
+            {% if profile.get_status_messages %}
+            <ul>
+                {% for status in profile.get_status_messages %}
+                    <li>
 
-        <!-- Add any other attributes you want to display -->
+                        <p><strong>{{ status.timestamp|date:"F j, Y, g:i a" }}:</strong> {{ status.message }}</p>
+                        {% for img in status.get_images %}
+                        <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
+                        {% endfor %}
+                    </li>
+                    <a href="{% url 'update_status' status.pk %}" class="button update-button">Update</a>
+                    <a href="{% url 'delete_status' status.pk %}" class="button delete-button">Delete</a>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No status messages available.</p>
+        {% endif %}
+    </div>
+    <div class="friends-section">
+        <h2>Friends</h2>
+        <div class="friend-container">
+            {% for friend in profile.get_friends %}
+            <div class="friend-item">
+                <img src="{{friend.profile_image_url}}"/>
+                <a href="{%url 'show_profile' friend.pk%}">{{friend.first_name }} {{friend.last_name}}</a>
+            </div>
+        {% empty %}
+            <li>No friends yet.</li>
+        {% endfor %}
+        </div>
     </div>
 
-    <h3>Status Message(s)</h3>
-    <div class="status">
-        {% if profile.get_status_messages %}
-        <ul>
-            {% for status in profile.get_status_messages %}
-                <li>
-
-                    <p><strong>{{ status.timestamp|date:"F j, Y, g:i a" }}:</strong> {{ status.message }}</p>
-                    {% for img in status.get_images %}
-                    <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
-                    {% endfor %}
-                </li>
-                <a href="{% url 'update_status' status.pk %}">Update</a>
-                <a href="{% url 'delete_status' status.pk %}">Delete</a>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No status messages available.</p>
-    {% endif %}
     </div>
     <nav>
         <ul>
             <li><a href="{% url 'update_profile' profile.pk %}">Update Profile</a></li>
             <li><a href="{% url 'create_status' profile.pk %}">Add status message</a></li>
             <li><a href="{% url 'show_all' %}">Back to all profiles</a></li>
+            <li><a href="{% url 'friend_suggestions' profile.pk %}">View Friend Suggestions</a></li>
+            <li><a href="{% url 'news_feed' profile.pk %}">View News Feed</a></li>
         </ul>
     </nav>
 {% endblock %}

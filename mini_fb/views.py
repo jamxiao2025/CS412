@@ -1,8 +1,10 @@
 # File: views.py
 # Author: James Xiao (jamxiao@bu.edu), 10/07/2024
 # Description: file to specify the views that will handle requests for mini_fb app.
-from django.shortcuts import render
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from typing import Any
+from django.shortcuts import render, get_object_or_404, redirect
+
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView, View
 from .models import * 
 from .forms import * 
 # Create your views here.
@@ -94,3 +96,33 @@ class UpdateStatusMessageView(UpdateView):
         '''Redirect to profile page after deletion'''
         profile = self.object.profile
         return reverse('show_profile', kwargs={'pk': profile.pk})
+
+class CreateFriendView(View):
+     def dispatch(self, request, *args, **kwargs):
+        pk = kwargs['pk']
+        other_pk = kwargs['other_pk']
+        
+        profile = get_object_or_404(Profile, pk=pk)
+        other_profile = get_object_or_404(Profile, pk=other_pk)
+        
+        profile.add_friend(other_profile)
+        
+        return redirect('show_profile', pk=pk)
+class ShowFriendSuggestionsView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/friend_suggestions.html'
+    context_object_name = 'profile'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['suggestions'] = self.object.get_friend_suggestions()
+        return context
+    
+class ShowNewsFeedView(DetailView):
+    model = Profile
+    template_name = 'mini_fb/news_feed.html'
+    context_object_name = 'profile'
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        profile = self.object  # The Profile instance from the URL
+        context['news_feed'] = profile.get_news_feed()  # Call the get_news_feed method
+        return context

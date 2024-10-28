@@ -25,6 +25,47 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse('show_profile', args=[str(self.pk)])
 
+    def get_friends(self):
+        '''Returns the friends that this profile has
+        '''
+        friends1 = Friend.objects.filter(profile1=self).values_list('profile2', flat=True)
+        friends2 = Friend.objects.filter(profile2=self).values_list('profile1', flat=True)
+        allFriends = friends1.union(friends2)
+        return Profile.objects.filter(pk__in=allFriends)
+        
+    def add_friend(self, other):
+        '''Method for adding friends
+        '''
+        if self == other:
+            raise ValueError("You cannot add yourself as a friend")
+        # Check if friendship already exists
+        existing_friend = Friend.objects.filter(
+            models.Q(profile1 = self, profile2 = other) | models.Q(profile1 = other, profile2 = self)
+        ).first()
+        if not existing_friend:
+            Friend.objects.create(profile1=self, profile2=other)
+    def get_friend_suggestions(self):
+        '''Return a list of suggested friends
+        '''
+        friends = self.get_friends() 
+        friends_pk = {friend.pk for friend in friends}
+        suggestions = Profile.objects.exclude(pk=self.pk).exclude(pk__in=friends_pk)
+        return suggestions
+    def get_news_feed(self):
+        # Get all friends' profiles
+        friends = self.get_friends()
+        
+        # Start with the current user's status messages
+        status_messages = list(self.get_status_messages())
+
+        # Extend with friends' status messages
+        for friend in friends:
+            status_messages.extend(friend.get_status_messages())
+        
+        # Sort the status messages by timestamp, most recent first
+        status_messages.sort(key=lambda x: x.timestamp, reverse=True)
+
+        return status_messages
 class StatusMessage(models.Model):
     '''Encapsulates a status message'''
     timestamp = models.DateTimeField(auto_now=True)
@@ -47,3 +88,12 @@ class Image(models.Model):
     def __str__(self):
         return f"{self.status} at {self.timestamp}"
     
+class Friend(models.Model):
+    '''Model to represent an edge connecting two nodes (friends)
+    '''
+    profile1 = models.ForeignKey(Profile, related_name="profile1", on_delete=models.CASCADE)
+    profile2 = models.ForeignKey(Profile, related_name="profile2", on_delete=models.CASCADE)
+    timestamp = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.profile1} & {self.profile2}"

@@ -123,3 +123,268 @@ footer {
         font-size: 0.9em;
     }
 }
+.friend-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.friend-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 120px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.friend-item:hover {
+    transform: translateY(-5px);
+}
+
+.friend-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.friend-item a {
+    font-size: 1em;
+    font-weight: 500;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.friend-item a:hover {
+    color: #0056b3;
+}
+
+.profile-header, .status-section, .friends-section {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+.profile-header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.profile-header img.large-profile-img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details p {
+    margin: 5px 0;
+    color: #555;
+}
+
+.status-section h3, .friends-section h2 {
+    font-size: 1.4em;
+    color: #333;
+    margin-bottom: 15px;
+}
+
+.status-section ul {
+    list-style: none;
+    padding: 0;
+}
+
+.status-section ul li {
+    background-color: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.status-section ul li p {
+    margin: 0;
+    color: #666;
+}
+
+.status-section ul li img {
+    margin-top: 10px;
+    width: 100%;
+    max-width: 300px;
+    border-radius: 5px;
+}
+
+.friend-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.friend-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 120px;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+}
+
+.friend-item:hover {
+    transform: translateY(-5px);
+}
+
+.friend-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.friend-item a {
+    font-size: 1em;
+    font-weight: 500;
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.2s ease-in-out;
+}
+
+.friend-item a:hover {
+    color: #0056b3;
+}
+/* General button styling */
+.button {
+    display: inline-block;
+    padding: 8px 12px;
+    font-size: 0.9em;
+    text-align: center;
+    color: #ffffff; /* White text */
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+/* Update button specific styling */
+.update-button {
+    background-color: #007bff; /* Using the blue color from your existing styles */
+    margin-right: 10px;
+}
+
+.update-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Delete button specific styling */
+.delete-button {
+    background-color: #dc3545; /* A shade of red that complements the blue */
+}
+
+.delete-button:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+
+.news-feed-container {
+    max-width: 800px; /* Constrain the width */
+    margin: 0 auto; /* Center the container */
+    padding: 20px;
+    background-color: #fff; /* White background for the news feed */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.news-feed-list {
+    list-style: none; /* Remove default list styles */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+}
+
+.news-feed-item {
+    padding: 15px;
+    border-bottom: 1px solid #e0e0e0; /* Divider between items */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.news-feed-item:last-child {
+    border-bottom: none; /* Remove bottom border from last item */
+}
+
+.news-feed-item:hover {
+    background-color: #f9f9f9; /* Light background on hover */
+}
+
+.status-header {
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Center items vertically */
+}
+
+.status-info {
+    margin-left: 10px; /* Space between image and text */
+}
+
+.small-profile-img {
+    width: 40px; /* Profile image size */
+    height: 40px;
+    border-radius: 50%; /* Circular image */
+    object-fit: cover; /* Ensure the image covers the element */
+}
+
+.status-author {
+    font-weight: bold; /* Make the author name bold */
+    margin: 0; /* Remove default margin */
+}
+
+.status-timestamp {
+    font-size: 0.9em; /* Slightly smaller font size */
+    color: #777; /* Lighter color for timestamp */
+    margin: 5px 0 0; /* Space above the timestamp */
+}
+
+.status-message {
+    margin: 10px 0; /* Space above and below the message */
+    font-size: 1em; /* Default font size for messages */
+    line-height: 1.4; /* Increase line height for readability */
+}
+
+.status-image {
+    max-width: 100%; /* Responsive image */
+    height: auto; /* Maintain aspect ratio */
+    margin-top: 10px; /* Space above the image */
+    border-radius: 5px; /* Rounded corners for images */
+}
+
+.back-to-profile {
+    display: inline-block; /* Make it a block for padding */
+    margin-top: 20px; /* Space above the link */
+    padding: 10px 15px; /* Padding for the button */
+    background-color: #007bff; /* Primary color */
+    color: #fff; /* White text */
+    border-radius: 5px; /* Rounded corners */
+    text-decoration: none; /* Remove underline */
+    transition: background-color 0.3s; /* Smooth background transition */
+}
+
+.back-to-profile:hover {
+    background-color: #0056b3; /* Darker shade on hover */
+}
