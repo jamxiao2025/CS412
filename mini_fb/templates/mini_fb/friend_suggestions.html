@@ -7,7 +7,7 @@
         <div class="friend-item">
             <img src="{{suggestion.profile_image_url}}"/>
             <a href="{%url 'show_profile' suggestion.pk%}">{{suggestion.first_name }} {{suggestion.last_name}}</a>
-            <a href="{% url 'add_friend' profile.pk suggestion.pk %}">Add Friend</a>
+            <a href="{% url 'add_friend' suggestion.pk %}">Add Friend</a>
         </div>
     {% empty %}
         <li>No friends yet.</li>

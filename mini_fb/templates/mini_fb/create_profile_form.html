@@ -4,20 +4,21 @@
 
 {% block content %}
 
-<h2>Create a Profile</h2>
+<table>
 
 <form method="POST">
 {% csrf_token %}
 <!-- simple way to display the form, all one line -->
 <!-- {{form}} -->
+<h2>Create a Profile</h2>
 
 <!-- each field on its own line -->
 <!-- {{form.as_p}} -->
 
-<table>
-    <!-- display form as a table -->
-    {{form.as_table}}
 
+    <!-- display form as a table -->
+    {{create_form.as_table}}
+    {{form.as_table}}
     <tr>
         <td></td>
         <td><input type="submit" name="submit" value="Create Profile">

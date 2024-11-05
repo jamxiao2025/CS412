@@ -27,8 +27,10 @@
                         <img src='{{img.image_file.url}}' alt='{{img.image_file.url}}'>
                         {% endfor %}
                     </li>
+                    {% if request.user.is_authenticated and request.user == profile.user %}
                     <a href="{% url 'update_status' status.pk %}" class="button update-button">Update</a>
                     <a href="{% url 'delete_status' status.pk %}" class="button delete-button">Delete</a>
+                    {% endif %}
                 {% endfor %}
             </ul>
         {% else %}
@@ -52,11 +54,14 @@
     </div>
     <nav>
         <ul>
-            <li><a href="{% url 'update_profile' profile.pk %}">Update Profile</a></li>
-            <li><a href="{% url 'create_status' profile.pk %}">Add status message</a></li>
+            {% if request.user.is_authenticated and request.user == profile.user %}
+            <li><a href="{% url 'update_profile' %}">Update Profile</a></li>
+            <li><a href="{% url 'create_status' %}">Add status message</a></li>
+            <li><a href="{% url 'friend_suggestions' %}">View Friend Suggestions</a></li>
+            <li><a href="{% url 'news_feed' %}">View News Feed</a></li>
+            {% endif %}
             <li><a href="{% url 'show_all' %}">Back to all profiles</a></li>
-            <li><a href="{% url 'friend_suggestions' profile.pk %}">View Friend Suggestions</a></li>
-            <li><a href="{% url 'news_feed' profile.pk %}">View News Feed</a></li>
+
         </ul>
     </nav>
 {% endblock %}
