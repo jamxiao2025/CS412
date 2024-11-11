@@ -1,0 +1,137 @@
+{% extends 'voter_analytics/base.html' %}
+{% block content %}
+<div class="container">
+    <!-- Filter Form Section -->
+    <div class="filter-section">
+        <form method="get" action="" class="filter-form">
+            <div class="filter-group">
+                <!-- Party Affiliation -->
+                <div class="filter-item">
+                    <label for="party_affiliation">Party Affiliation:</label>
+                    <select name="party_affiliation" id="party_affiliation">
+                        <option value="">Select Party</option>
+                        {% for affiliation in party_affiliations %}
+                            <option value="{{ affiliation }}" 
+                            {% if affiliation|lower == request.GET.party_affiliation|lower %}selected{% endif %}>
+                            {{ affiliation|title }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Date of Birth Range -->
+                <div class="filter-item">
+                    <label for="min_dob">Minimum Date of Birth:</label>
+                    <select name="min_dob" id="min_dob">
+                        <option value="">Any</option>
+                        {% for year in birth_years %}
+                            <option value="{{ year }}" 
+                            {% if year|stringformat:"s" == request.GET.min_dob|stringformat:"s" %}selected{% endif %}>
+                            {{ year }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="filter-item">
+                    <label for="max_dob">Maximum Date of Birth:</label>
+                    <select name="max_dob" id="max_dob">
+                        <option value="">Any</option>
+                        {% for year in birth_years %}
+                            <option value="{{ year }}" 
+                            {% if year|stringformat:"s" == request.GET.max_dob|stringformat:"s" %}selected{% endif %}>
+                            {{ year }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Voter Score -->
+                <div class="filter-item">
+                    <label for="voter_score">Voter Score:</label>
+                    <select name="voter_score" id="voter_score">
+                        <option value="">Any</option>
+                        {% for score in voter_scores %}
+                            <option value="{{ score }}" 
+                            {% if score|stringformat:"s" == request.GET.voter_score|stringformat:"s" %}selected{% endif %}>
+                            {{ score }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <!-- Voted in Specific Elections -->
+                <div class="filter-item">
+                    <label>Voted in Elections:</label>
+                    <div class="checkbox-group">
+                        <label><input type="checkbox" name="v20state" value="True" 
+                            {% if request.GET.v20state == 'True' %}checked{% endif %}> 2020 State</label>
+                        <label><input type="checkbox" name="v21town" value="True" 
+                            {% if request.GET.v21town == 'True' %}checked{% endif %}> 2021 Town</label>
+                        <label><input type="checkbox" name="v21primary" value="True" 
+                            {% if request.GET.v21primary == 'True' %}checked{% endif %}> 2021 Primary</label>
+                        <label><input type="checkbox" name="v22general" value="True" 
+                            {% if request.GET.v22general == 'True' %}checked{% endif %}> 2022 General</label>
+                        <label><input type="checkbox" name="v23town" value="True" 
+                            {% if request.GET.v23town == 'True' %}checked{% endif %}> 2023 Town</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="filter-submit">
+                <button type="submit">Filter</button>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Voter List Section -->
+    <div class="voter-list-section">
+        <h1>Voter Records</h1>
+        <div class="pagination-controls">
+            {% if is_paginated %}
+                <ul class="pagination">
+                    {% if page_obj.has_previous %}
+                        <li>
+                            <span><a href="?page={{ page_obj.previous_page_number }}{% if request.GET.party_affiliation %}&party_affiliation={{ request.GET.party_affiliation }}{% endif %}{% if request.GET.min_dob %}&min_dob={{ request.GET.min_dob }}{% endif %}{% if request.GET.max_dob %}&max_dob={{ request.GET.max_dob }}{% endif %}{% if request.GET.voter_score %}&voter_score={{ request.GET.voter_score }}{% endif %}{% if request.GET.v20state %}&v20state={{ request.GET.v20state }}{% endif %}{% if request.GET.v21town %}&v21town={{ request.GET.v21town }}{% endif %}{% if request.GET.v21primary %}&v21primary={{ request.GET.v21primary }}{% endif %}{% if request.GET.v22general %}&v22general={{ request.GET.v22general }}{% endif %}{% if request.GET.v23town %}&v23town={{ request.GET.v23town }}{% endif %}">Previous</a></span>
+                        </li>
+                    {% endif %}
+                    <li>
+                        <span>Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.</span>
+                    </li>
+                    {% if page_obj.has_next %}
+                        <li>
+                            <span><a href="?page={{ page_obj.next_page_number }}{% if request.GET.party_affiliation %}&party_affiliation={{ request.GET.party_affiliation }}{% endif %}{% if request.GET.min_dob %}&min_dob={{ request.GET.min_dob }}{% endif %}{% if request.GET.max_dob %}&max_dob={{ request.GET.max_dob }}{% endif %}{% if request.GET.voter_score %}&voter_score={{ request.GET.voter_score }}{% endif %}{% if request.GET.v20state %}&v20state={{ request.GET.v20state }}{% endif %}{% if request.GET.v21town %}&v21town={{ request.GET.v21town }}{% endif %}{% if request.GET.v21primary %}&v21primary={{ request.GET.v21primary }}{% endif %}{% if request.GET.v22general %}&v22general={{ request.GET.v22general }}{% endif %}{% if request.GET.v23town %}&v23town={{ request.GET.v23town }}{% endif %}">Next</a></span>
+                        </li>
+                    {% endif %}
+                </ul>
+            {% endif %}
+        </div>
+        
+        <table>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Address</th>
+                <th>Date of Birth</th>
+                <th>Party Affiliation</th>
+                <th>Voter Score</th>
+                <th>Details</th>
+            </tr>
+
+            {% for voter in voters %}
+            <tr>
+                <td>{{ voter.first_name }}</td>
+                <td>{{ voter.last_name }}</td>
+                <td>{{ voter.street_number }} {{ voter.street_name }} {% if voter.apartment_number %} Apt {{ voter.apartment_number }}{% endif %}</td>
+                <td>{{ voter.date_of_birth }}</td>
+                <td>{{ voter.party_affiliation }}</td>
+                <td>{{ voter.voter_score }}</td>
+                <td>
+                    <a href="{% url 'voter' voter.pk %}">View Details</a> <!-- Link to detail page -->
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock %}

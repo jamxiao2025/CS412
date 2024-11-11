@@ -1,0 +1,59 @@
+{% extends 'voter_analytics/base.html' %}
+{% block content %}
+<div class="container">
+    <h1>Voter Details: {{ voter.first_name }} {{ voter.last_name }}</h1>
+    
+    <table>
+        <tr>
+            <th>First Name</th>
+            <td>{{ voter.first_name }}</td>
+        </tr>
+        <tr>
+            <th>Last Name</th>
+            <td>{{ voter.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Date of Birth</th>
+            <td>{{ voter.date_of_birth }}</td>
+        </tr>
+        <tr>
+            <th>Voter Registration Date</th>
+            <td>{{ voter.registration_date }}</td>
+        </tr>
+        <tr>
+            <th>Party Affiliation</th>
+            <td>{{ voter.party_affiliation }}</td>
+        </tr>
+        <tr>
+            <th>Voter Score</th>
+            <td>{{ voter.voter_score }}</td>
+        </tr>
+        <tr>
+            <th>Voted in 2020 State Election</th>
+            <td>{{ voter.v20state }}</td>
+        </tr>
+        <tr>
+            <th>Voted in 2021 Town Election</th>
+            <td>{{ voter.v21town }}</td>
+        </tr>
+        <tr>
+            <th>Voted in 2021 Primary</th>
+            <td>{{ voter.v21primary }}</td>
+        </tr>
+        <tr>
+            <th>Voted in 2022 General Election</th>
+            <td>{{ voter.v22general }}</td>
+        </tr>
+        <tr>
+            <th>Voted in 2023 Town Election</th>
+            <td>{{ voter.v23town }}</td>
+        </tr>
+    </table>
+
+    <!-- Google Maps Link -->
+    <h3>Find Voter on Google Maps</h3>
+    <a href="https://www.google.com/maps?q={{ voter.street_number }}+{{ voter.street_name }}+{{ voter.apartment_number|default:'' }}+{{ voter.city }}+{{ voter.state }}+{{ voter.zip_code }}" target="_blank">
+        View Address on Map
+    </a>
+</div>
+{% endblock %}

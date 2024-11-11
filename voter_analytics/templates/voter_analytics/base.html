@@ -1,0 +1,22 @@
+{% load static %}
+<html>
+    <head>
+        <title>Voter Analytics</title>
+        <link rel="stylesheet" href="{% static 'styles-voter_analytics.css' %}">
+    </head>
+    <body>
+        <header>
+            <h1>Voter Analytics</h1>
+            <nav>
+                <ul>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                    <li><a href="{% url 'graphs' %}">Graph View</a></li>
+                </ul>
+            </nav>
+        </header>
+    
+    {% block content %}
+    {% endblock %}    
+  
+    </body>
+</html>

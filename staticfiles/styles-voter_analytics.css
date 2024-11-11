@@ -1,0 +1,389 @@
+/* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    background-color: #f4f7f6;
+    color: #333;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #007BFF;
+    padding: 1rem 2rem;
+    color: #fff;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+nav ul {
+    list-style: none;
+    text-align: center;
+    margin-top: 10px;
+}
+
+nav ul li {
+    display: inline-block;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #ffcc00;
+}
+
+/* Container */
+.container {
+    width: 80%;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: collapse;
+}
+
+table th,
+table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table th {
+    background-color: #f1f1f1;
+    color: #333;
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+table tr:hover {
+    background-color: #f1f1f1;
+}
+
+table td a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+table td a:hover {
+    text-decoration: underline;
+}
+
+/* Filter Form */
+.filter-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.filter-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.filter-item {
+    width: calc(33.333% - 1rem);
+    margin-bottom: 1rem;
+}
+
+.filter-item label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+/* General style for the select dropdown */
+.filter-form select {
+    border: none;
+    border-bottom: 2px solid #007bff;  /* Sleek blue underline */
+    background: transparent;
+    font-size: 16px;
+    color: #333;
+    padding: 5px 0;
+    outline: none; /* Remove outline on focus */
+    appearance: none; /* Remove default dropdown arrow (for modern browsers) */
+    -webkit-appearance: none; /* Remove default dropdown arrow for WebKit browsers (Chrome/Safari) */
+    -moz-appearance: none; /* Remove default dropdown arrow for Firefox */
+    transition: border-color 0.3s ease;
+}
+
+/* Hover and Focus Effects */
+.filter-form select:hover,
+.filter-form select:focus {
+    border-color: #0056b3;  /* Darker blue underline on hover/focus */
+}
+
+/* Custom Arrow (optional) */
+.filter-form select::-ms-expand {
+    display: none; /* For Internet Explorer */
+}
+
+/* Optional: Add custom styling to the dropdown */
+.filter-form select::after {
+    content: '▼'; /* Custom down arrow */
+    font-size: 16px;
+    color: #007bff;
+    position: absolute;
+    right: 10px;
+    top: 12px;
+}
+
+/* To ensure the select has space for the arrow */
+.filter-form select {
+    padding-right: 30px; /* Make space for the custom arrow */
+}
+
+
+.checkbox-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.filter-submit {
+    width: 100%;
+    text-align: right;
+    margin-top: 1rem;
+}
+
+.filter-submit button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.filter-submit button:hover {
+    background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .filter-item {
+        width: 100%;
+    }
+
+    .checkbox-group {
+        flex-direction: column;
+    }
+}
+
+
+/* Pagination Styles */
+.pagination {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination li {
+    margin: 0 10px;
+}
+
+.pagination li span a {
+    text-decoration: none;
+    color: #007BFF;
+}
+
+.pagination li span {
+    padding: 8px 16px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.pagination li span:hover {
+    background-color: #e0e0e0;
+}
+
+/* Links and Buttons */
+h3 a {
+    color: #007BFF;
+    text-decoration: none;
+    font-size: 1rem;
+    padding: 8px 16px;
+    background-color: #f1f1f1;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+h3 a:hover {
+    background-color: #007BFF;
+    color: white;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+
+    table th, table td {
+        padding: 10px 12px;
+    }
+
+    form .row {
+        flex-direction: column;
+    }
+
+    form div {
+        flex: none;
+        width: 100%;
+    }
+
+    nav ul li {
+        display: block;
+        margin-bottom: 10px;
+    }
+}
+
+/* General Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Filter Form Section */
+.filter-section {
+    margin-bottom: 2rem;
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+/* Voter List Section */
+.voter-list-section {
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+    border-radius: 8px;
+}
+
+/* Pagination Controls */
+.pagination-controls {
+    margin-bottom: 1rem;
+}
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    gap: 10px;
+}
+
+.pagination li {
+    padding: 5px 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.pagination li a {
+    text-decoration: none;
+    color: #007bff;
+}
+
+.pagination li a:hover {
+    text-decoration: underline;
+}
+
+.pagination li span {
+    display: inline-block;
+    padding: 5px 10px;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f4f4f4;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Button */
+button[type="submit"] {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Example CSS for graphs */
+.graphs-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.graph {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.graph h3 {
+    text-align: center;
+}
