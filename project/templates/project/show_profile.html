@@ -39,7 +39,9 @@
             <li class="receipt-item">
               <strong>Date:</strong> {{ receipt.date_uploaded|date:"F j, Y" }}<br>
               <strong>Total Spent:</strong> ${{ receipt.total_spent }}<br>
+              {% if request.user.is_authenticated %}
               <a href="{% url 'show_receipt' receipt.pk %}" class="receipt-link">View Receipt Details</a>
+              {% endif %}
             </li>
           {% endfor %}
         </ul>
