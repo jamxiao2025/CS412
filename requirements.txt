@@ -14,7 +14,7 @@ jiter==0.8.2
 numpy==2.0.2
 openai==1.57.1
 packaging==24.2
-pandas==2.2.3
+pandas==2.3.0
 pillow==11.0.0
 plotly==5.24.1
 pydantic==2.10.3
