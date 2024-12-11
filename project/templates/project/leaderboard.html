@@ -1,0 +1,59 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+  <h1>Leaderboard</h1>
+
+  <h2>Your Comparison to Friends</h2>
+
+  <!-- Leaderboard Table -->
+  <table class="receipt-items-table">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>User</th>
+        <th>Stores Shopped From</th>
+        <th>Total Quantity Bought</th>
+        <th>Total Categories Bought</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for user_data in leaderboard_data %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ user_data.username }}</td>
+          <td>{{ user_data.stores_shopped_from }}</td>
+          <td>{{ user_data.total_quantity_bought }}</td>
+          <td>{{ user_data.total_categories_bought }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <h3>Visual Comparison</h3>
+
+  <!-- Graph for Total Quantity Bought -->
+  <div>
+    <h4>Total Quantity Bought Comparison</h4>
+    {{ graph_quantity_comparison|safe }}
+  </div>
+
+  <!-- Graph for Stores Shopped From -->
+  <div>
+    <h4>Stores Shopped From Comparison</h4>
+    {{ graph_stores_comparison|safe }}
+  </div>
+
+  <!-- Graph for Categories Bought -->
+  <div>
+    <h4>Categories Bought Comparison</h4>
+    {{ graph_categories_comparison|safe }}
+  </div>
+
+  <!-- Graph for Specific Category Comparison (e.g., Dairy, Protein) -->
+  <div>
+    <h4>Category Comparison (Dairy, Protein, Vegetables, etc.)</h4>
+    {{ graph_category_comparison|safe }}
+  </div>
+
+  <a href="{% url 'show_profile' profile.pk %}" class="back-link">Back to Profile</a>
+{% endblock %}

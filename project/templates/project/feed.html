@@ -1,0 +1,21 @@
+{% extends "project/base.html" %}
+
+{% block content %}
+    <section class="feed-section">
+        <h2 class="feed-title">Feed</h2>
+        <ul class="feed-list">
+            {% for receipt in feed %}
+                <li class="feed-item">
+                    <div class="feed-item-header">
+                        <p class="feed-profile-name"><strong>{{ receipt.profile.first_name }} {{ receipt.profile.last_name }}</strong></p>
+                        <p class="feed-date"><strong>{{ receipt.date_uploaded|date:"F j, Y, g:i a" }}:</strong></p>
+                    </div>
+                    <p class="feed-receipt-data">{{ receipt.receipt_data }}</p>
+                </li>
+            {% empty %}
+                <li class="no-receipts">No receipts available.</li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'show_profile' profile.pk %}" class="back-link">Back to Profile</a>
+    </section>
+{% endblock %}

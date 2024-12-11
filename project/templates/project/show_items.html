@@ -1,0 +1,89 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+  <section class="receipt-items-section">
+    <h2 class="section-title">Items Purchased by {{ profile.username }}</h2>
+
+    <!-- Filter Form -->
+    <form method="get" class="filters-form">
+      <label for="category">Category:</label>
+      <select name="category" id="category">
+        <option value="">All</option>
+        {% for category in categories %}
+          <option value="{{ category }}" {% if category == current_category %}selected{% endif %}>{{ category }}</option>
+        {% endfor %}
+      </select>
+
+      <label for="date_from">Date From:</label>
+      <input type="date" name="date_from" id="date_from" value="{{ request.GET.date_from }}">
+
+      <label for="date_to">Date To:</label>
+      <input type="date" name="date_to" id="date_to" value="{{ request.GET.date_to }}">
+
+      <label for="price">Sort by Price:</label>
+      <select name="price" id="price">
+        <option value="">Select</option>
+        <option value="low_to_high" {% if request.GET.price == "low_to_high" %}selected{% endif %}>Low to High</option>
+        <option value="high_to_low" {% if request.GET.price == "high_to_low" %}selected{% endif %}>High to Low</option>
+      </select>
+
+      <button type="submit">Filter</button>
+    </form>
+
+    {% if items %}
+      <table class="receipt-items-table">
+        <thead>
+          <tr>
+            <th>Receipt</th>
+            <th>Item Name</th>
+            <th>Category</th>
+            <th>Quantity</th>
+            <th>Price</th>
+            <th>Date Uploaded</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for item in items %}
+            <tr>
+              <td>
+                <a href="{% url 'show_receipt' item.receipt.pk %}">Receipt #{{ item.receipt.id }}</a>
+              </td>
+              <td>{{ item.name }}</td>
+              <td>{{ item.category }}</td>
+              <td>{{ item.quantity }}</td>
+              <td>${{ item.price }}</td>
+              <td>{{ item.receipt.date_uploaded|date:"Y-m-d H:i" }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      
+      <!-- Pagination -->
+<!-- Pagination -->
+    <div class="pagination">
+    {% if page_obj.has_previous %}
+      <a class="pagination-button" href="?page=1&category={{ current_category }}&date_from={{ request.GET.date_from }}&date_to={{ request.GET.date_to }}&price={{ request.GET.price }}">First</a>
+      <a class="pagination-button" href="?page={{ page_obj.previous_page_number }}&category={{ current_category }}&date_from={{ request.GET.date_from }}&date_to={{ request.GET.date_to }}&price={{ request.GET.price }}">Previous</a>
+    {% else %}
+      <span class="pagination-button disabled">First</span>
+      <span class="pagination-button disabled">Previous</span>
+    {% endif %}
+    
+    <span class="pagination-info">Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    
+    {% if page_obj.has_next %}
+      <a class="pagination-button" href="?page={{ page_obj.next_page_number }}&category={{ current_category }}&date_from={{ request.GET.date_from }}&date_to={{ request.GET.date_to }}&price={{ request.GET.price }}">Next</a>
+      <a class="pagination-button" href="?page={{ page_obj.paginator.num_pages }}&category={{ current_category }}&date_from={{ request.GET.date_from }}&date_to={{ request.GET.date_to }}&price={{ request.GET.price }}">Last</a>
+    {% else %}
+      <span class="pagination-button disabled">Next</span>
+      <span class="pagination-button disabled">Last</span>
+    {% endif %}
+  </div>
+  
+    {% else %}
+      <p>No items found for {{ profile.username }}.</p>
+    {% endif %}
+
+    <a href="{% url 'show_profile' profile.pk %}" class="back-link">Back to Profile</a>
+  </section>
+{% endblock %}

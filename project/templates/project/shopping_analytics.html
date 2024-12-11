@@ -1,0 +1,38 @@
+{% extends 'project/base.html' %}
+
+{% block content %}
+  <h1>Shopping Analytics for {{ profile.username }}</h1>
+
+  <!-- Spending Over Time -->
+  <h2>1. Spending Over Time</h2>
+  <div>
+    {% if graph_spending_over_time %}
+      {{ graph_spending_over_time|safe }}
+    {% else %}
+      <p>No data available for spending over time. It looks like you haven't made any purchases yet or there is no data to analyze.</p>
+    {% endif %}
+  </div>
+
+  <!-- Category Spending Comparison -->
+  <h2>2. Category Spending Comparison</h2>
+  <div>
+    {% if graph_category_comparison %}
+      {{ graph_category_comparison|safe }}
+    {% else %}
+      <p>No data available for category spending comparison. You haven't purchased from any categories yet or there's no data available for this analysis.</p>
+    {% endif %}
+  </div>
+
+  <!-- Store Spending Distribution -->
+  <h2>3. Store Spending Distribution</h2>
+  <div>
+    {% if graph_store_distribution %}
+      {{ graph_store_distribution|safe }}
+    {% else %}
+      <p>No data available for store spending distribution. It looks like you haven't shopped at any stores or there's no data for this analysis.</p>
+    {% endif %}
+  </div>
+
+  <a href="{% url 'show_profile' profile.pk %}" class="back-link">Back to Profile</a>
+
+{% endblock %}

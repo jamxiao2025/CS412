@@ -1,0 +1,484 @@
+/* styles-project.css */
+
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background like Spotify */
+    color: #fff; /* Light text for contrast */
+    line-height: 1.6;
+}
+/* General body styling */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background */
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+/* Navbar Styling */
+.navbar {
+    background-color: #1f1f1f; /* Dark navbar background */
+    padding: 10px 0;
+    width: 100%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between; /* Spread the elements across the navbar */
+    align-items: center;
+    width: 90%;
+    margin: 0 auto; /* Center the navbar content */
+}
+
+.navbar-logo h1 {
+    font-size: 1.8rem;
+    color: #fff;
+}
+
+.navbar-brand {
+    color: #1db954; /* Green accent color */
+    text-decoration: none;
+}
+
+.navbar-links {
+    display: flex;
+    align-items: center;
+}
+
+.navbar-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    margin-left: 20px;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-link:hover {
+    background-color: #1db954; /* Green accent on hover */
+}
+
+.navbar-form {
+    margin-left: 20px;
+}
+
+.logout-button {
+    background-color: #e50914; /* Red background for logout */
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #b20710; /* Darker red on hover */
+}
+
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.welcome-text {
+    color: #fff;
+    font-size: 2rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: #fff;
+}
+
+.profiles-section {
+    text-align: left;
+}
+
+.profiles-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2rem;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profiles-table th,
+.profiles-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+    text-align: left;
+}
+
+.profiles-table th {
+    background-color: #333;
+    font-size: 1rem;
+}
+
+.profiles-table td {
+    font-size: 1rem;
+}
+
+.profiles-table tr:hover {
+    background-color: #2e2e2e;
+}
+
+.profile-image {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #333;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+a:hover .profile-image {
+    border-color: #1db954; /* Spotify Green accent */
+}
+
+/* styles-project.css */
+
+/* Reset some default browser styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212; /* Dark background like Spotify */
+    color: #fff; /* Light text for contrast */
+    line-height: 1.6;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-title {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-align: left;
+    color: #fff;
+}
+
+/* Profile Section */
+.user-profile-section {
+    text-align: left;
+}
+
+.profile-info {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.profile-header {
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    margin-bottom: 1.5rem;
+}
+
+.profile-name {
+    font-size: 2rem;
+    margin-right: 20px;
+    color: #fff;
+}
+
+.profile-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #333;
+}
+
+.profile-info p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+.receipt-list, .friend-list, .pending-request-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.receipt-item, .friend-item, .pending-request-item {
+    background-color: #1f1f1f;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.receipt-item a {
+    color: #1db954; /* Spotify Green accent */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.receipt-item a:hover {
+    text-decoration: underline;
+}
+
+.friend-item, .pending-request-item {
+    font-size: 1.1rem;
+}
+
+.friend-item {
+    background-color: #333;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pending-request-item {
+    background-color: #444;
+}
+
+/* Receipt view styling*/
+.receipt-detail-section {
+    text-align: left;
+    margin-bottom: 2rem;
+}
+
+.receipt-info {
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+}
+
+.receipt-info p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.receipt-items-section {
+    margin-bottom: 2rem;
+}
+
+.receipt-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #1f1f1f;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 2rem;
+}
+
+.receipt-items-table th,
+.receipt-items-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #333;
+    text-align: left;
+}
+
+.receipt-items-table th {
+    background-color: #333;
+    font-size: 1rem;
+}
+
+.receipt-items-table td {
+    font-size: 1rem;
+}
+
+.receipt-items-table tr:hover {
+    background-color: #2e2e2e;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 1.5rem;
+    color: #1db954; /* Spotify Green accent */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/*Feed*/
+/* Feed Page Styling */
+.feed-section {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #121212;
+    border-radius: 8px;
+    color: #fff;
+}
+
+.feed-title {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    color: #fff;
+}
+
+.feed-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.feed-item {
+    background-color: #1f1f1f;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.feed-item-header {
+    margin-bottom: 1rem;
+}
+
+.feed-profile-name {
+    font-size: 1.5rem;
+    color: #1db954; /* Spotify Green for the user name */
+}
+
+.feed-date {
+    font-size: 1rem;
+    color: #ccc; /* Light grey for the date */
+}
+
+.feed-receipt-data {
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    color: #fff;
+}
+
+.no-receipts {
+    font-size: 1.2rem;
+    color: #ccc; /* Light grey */
+    text-align: left;
+}
+
+/* General Pagination Styles */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    font-family: Arial, sans-serif;
+  }
+  
+  .pagination-button {
+    padding: 8px 15px;
+    margin: 0 5px;
+    background-color: #007bff;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .pagination-button:hover {
+    background-color: #0056b3;
+  }
+  
+  .pagination-button.disabled {
+    background-color: #ddd;
+    color: #bbb;
+    cursor: not-allowed;
+  }
+  
+  .pagination-info {
+    font-size: 16px;
+    color: #555;
+    margin: 0 10px;
+  }
+  
+  /* Highlight current page */
+  .pagination-button.current {
+    background-color: #28a745;
+  }
+  
+  .pagination-button.current:hover {
+    background-color: #218838;
+  }
+
+  /* Navbar Styling */
+/* Navbar Styling */
+.navbar {
+    background-color: #1f1f1f; /* Background color */
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+    width: 100%; /* Full width */
+    text-align: center;
+    border-radius: 8px;
+    position: sticky;
+    top: 0;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: space-evenly; /* Spread the links evenly across the navbar */
+    gap: 20px;
+    list-style-type: none;
+    padding: 0; /* Remove any default padding */
+    margin: 0;  /* Remove any default margin */
+    width: 100%; /* Ensure the navbar spans the full width */
+}
+
+.nav-links li {
+    margin: 0;
+    flex-grow: 1;  /* Allow links to grow and fill the available space */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    display: block; /* Ensure links fill the entire li area */
+    text-align: center; /* Align text to the center */
+}
+
+.nav-link:hover {
+    background-color: #007bff; /* Hover color */
+}
+
+.nav-link:active {
+    background-color: #0056b3; /* Active link color */
+}
+
+.nav-link:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px #007bff; /* Focus state */
+}
