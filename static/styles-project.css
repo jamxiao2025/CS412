@@ -13,14 +13,7 @@ body {
     color: #fff; /* Light text for contrast */
     line-height: 1.6;
 }
-/* General body styling */
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Dark background */
-    color: #fff;
-    margin: 0;
-    padding: 0;
-}
+
 
 /* Navbar Styling */
 .navbar {
@@ -157,34 +150,6 @@ a:hover .profile-image {
     border-color: #1db954; /* Spotify Green accent */
 }
 
-/* styles-project.css */
-
-/* Reset some default browser styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
-    background-color: #121212; /* Dark background like Spotify */
-    color: #fff; /* Light text for contrast */
-    line-height: 1.6;
-}
-
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-.page-title {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-    text-align: left;
-    color: #fff;
-}
 
 /* Profile Section */
 .user-profile-section {

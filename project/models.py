@@ -1,3 +1,6 @@
+# File: models.py
+# Author: James Xiao (jamxiao@bu.edu), 12/11/2024
+# Description: File for defining models
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
@@ -43,8 +46,8 @@ class UserProfile(models.Model):
         '''Accept a pending friend request from another profile or create a new friendship if not already present.'''
         # Look for a pending friendship between the two profiles
         friendship = Friendship.objects.filter(
-            profile=self, 
-            friend=other, 
+            profile=other, 
+            friend=self, 
             status='pending'
         ).first()  # Only need the first match, as each friendship is unique
         
@@ -79,7 +82,7 @@ class UserProfile(models.Model):
 
     def get_receipts(self):
         '''Returns a queryset of the receipts associated with this profile.'''
-        return Receipt.objects.filter(profile=self)
+        return Receipt.objects.filter(profile=self).order_by('-date_uploaded')
 
     def get_absolute_url(self):
         '''Returns the URL to the profile page of the user.'''
@@ -122,7 +125,8 @@ class UserProfile(models.Model):
         
         # Combine the two sets of pending requests
         all_pending_requests = set(pending_friend_requests) | set(pending_friend_requests_other_way)
-        
+        if len(all_pending_requests) == 0:
+            suggestions = UserProfile.objects.all()
         # Filter out those who are already friends or have a pending request
         suggestions = UserProfile.objects.exclude(pk=self.pk) \
                                         .exclude(pk__in=friends_pk) \

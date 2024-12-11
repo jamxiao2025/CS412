@@ -395,11 +395,13 @@ class DeleteReceiptPageView(LoginRequiredMixin, DeleteView):
         return reverse('show_profile', kwargs={'pk': receipt.profile.pk})
 
 class ProfileItemsView(ListView):
+    '''View to display all the items that a user has purchased with filtering capabilities'''
     model = Item 
     template_name = "project/show_items.html"
     context_object_name = "items"
     paginate_by = 10
     def get_queryset(self) -> QuerySet[Any]:
+        '''Enable filtering'''
         profile = UserProfile.objects.get(user = self.request.user)
         queryset =  Item.objects.filter(receipt__profile = profile)
         # Filter by category (if passed in GET request)
@@ -432,6 +434,7 @@ class ProfileItemsView(ListView):
         return context
     
 class ShoppingAnalyticsView(View):
+    '''View for displaying user analytics'''
     def get(self, request, *args, **kwargs):
         # Get the current user's profile
         profile = UserProfile.objects.get(user=request.user)
@@ -525,6 +528,7 @@ class ShoppingAnalyticsView(View):
             'profile': profile
         })
 class LeaderboardView(View):
+    '''View for displaying user's analytics against their friends'''
     def get(self, request, *args, **kwargs):
         # Get the current user's profile
         profile = UserProfile.objects.get(user=request.user)

@@ -9,8 +9,8 @@
             <a href="{% url 'add_friend' profile.pk suggestion.pk %}" class="back-link">Add Friend</a>
         </div>
     {% empty %}
-        <li>No friends yet.</li>
+        <h1>No friends available to suggest.</h1>
     {% endfor %}
     </div>
-    <a href="{% url 'show_profile' profile.pk %}">Back to Profile</a>
+    <a href="{% url 'show_profile' profile.pk %}" class="back-link">Back to Profile</a>
 {% endblock %}

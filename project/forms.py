@@ -1,3 +1,6 @@
+# File: forms.py
+# Author: James Xiao (jamxiao@bu.edu), 12/11/2024
+# Description: File for defining forms used in project
 from django import forms
 from .models import UserProfile, Receipt
 from django.core.exceptions import ValidationError
@@ -15,6 +18,7 @@ class UpdateUserProfileForm(forms.ModelForm):
 
 
 class ReceiptUploadForm(forms.ModelForm):
+    '''Form for uploading receipt'''
     receipt_image = forms.ImageField()
     class Meta:
         model = Receipt
