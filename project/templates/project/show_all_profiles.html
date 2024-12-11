@@ -1,0 +1,31 @@
+<!-- blog/templates/blog/show_all_profiles.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+    <section class="profiles-section">
+        <h1 class="page-title">Show all Profiles</h1>
+
+        <table class="profiles-table">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Profile Image</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for p in profiles %}
+                <tr>
+                    <td>{{ p.first_name }}</td>
+                    <td>{{ p.last_name }}</td>
+                    <td>{{ p.username }}</td>
+                    <td>{{ p.email }}</td>
+                    <td><a href="{% url 'show_profile' p.pk %}"><img src="{{ p.profile_image_url }}" alt="{{ p.first_name }}'s profile picture" class="profile-image"></a></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </section>
+{% endblock %}

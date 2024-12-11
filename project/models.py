@@ -10,7 +10,6 @@ class UserProfile(models.Model):
     # data attributes 
     first_name = models.CharField(max_length=150, blank=True)
     last_name = models.CharField(max_length=150, blank=True)
-    username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(unique=True)
     profile_image_url = models.URLField(blank=True)
 
@@ -143,7 +142,7 @@ class Receipt(models.Model):
     total_spent = models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-            return f"Receipt {self.id} by {self.profile.username}"
+            return f"Receipt {self.id} by {self.profile.email}"
 
 class Item(models.Model):
     receipt = models.ForeignKey(Receipt, on_delete=models.CASCADE, related_name='items')
@@ -168,4 +167,4 @@ class Friendship(models.Model):
      class Meta:
         unique_together = ('profile', 'friend')  # Prevent duplicate friend requests
      def __str__(self):
-        return f"{self.profile.username} -> {self.friend.username} ({self.status})"
+        return f"{self.profile.email} -> {self.friend.email} ({self.status})"

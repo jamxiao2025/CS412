@@ -1,0 +1,48 @@
+<!-- templates/receipts/receipt_detail.html -->
+{% extends 'project/base.html' %}
+
+{% block content %}
+  <section class="receipt-detail-section">
+    <h1 class="page-title">Receipt Details</h1>
+    
+    <div class="receipt-info">
+      <p><strong>Receipt ID:</strong> {{ receipt.id }}</p>
+      <p><strong>Store:</strong> {{receipt.receipt_data.store_name}}</p>
+      <p><strong>Date Uploaded:</strong> {{ receipt.date_uploaded|date:"F j, Y, g:i a" }}</p>
+      <p><strong>Total Spent:</strong> ${{ receipt.total_spent }}</p>
+    </div>
+
+    <section class="receipt-items-section">
+      <h2 class="section-title">Items</h2>
+      {% if receipt.receipt_data.items %}
+        <table class="receipt-items-table">
+          <thead>
+            <tr>
+              <th>Item Name</th>
+              <th>Category</th>
+              <th>Quantity</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for item in receipt.receipt_data.items %}
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.category }}</td>
+                <td>{{ item.quantity }}</td>
+                <td>${{ item.price }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No items in this receipt.</p>
+      {% endif %}
+    </section>
+
+    <a href="{% url 'show_profile' receipt.profile.pk %}" class="back-link">Back to Profile</a>
+    {% if request.user.is_authenticated and request.user == profile.user and receipt.profile == profile %}
+    <a href="{% url 'delete_receipt' receipt.pk %}" class="back-link">Delete Receipt</a>
+    {% endif %}
+  </section>
+{% endblock %}

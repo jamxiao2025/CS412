@@ -1,0 +1,36 @@
+{% load static %}
+<html>
+<head>
+    <title>Receiptify</title>
+    <link rel="stylesheet" href="{% static 'styles-project.css' %}">
+</head>
+
+<body>
+    <header class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <h1><a href="{% url 'show_all' %}" class="navbar-brand">Receiptify</a></h1>
+            </div>
+            
+            <div class="navbar-links">
+                {% if request.user.is_authenticated %}
+                    <span class="welcome-text">Welcome, {{ request.user.username }}</span>
+                    <form action="{% url 'logout' %}" method="POST" class="navbar-form">
+                        {% csrf_token %}
+                        <button type="submit" class="logout-button">Logout</button>
+                    </form>
+                {% else %}
+                    <a href="{% url 'create_profile' %}" class="navbar-link">Create Account</a>
+                    <a href="{% url 'login' %}" class="navbar-link">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        {% block content %}
+        <!-- Content will be inserted here -->
+        {% endblock %}
+    </div>
+</body>
+</html>

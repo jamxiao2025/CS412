@@ -6,12 +6,12 @@ class CreateProfileForm(forms.ModelForm):
     '''A form to create a profile'''
     class Meta:
         model = UserProfile 
-        fields = ['first_name', 'last_name', 'username', 'email', 'profile_image_url']
+        fields = ['first_name', 'last_name', 'email', 'profile_image_url']
 class UpdateUserProfileForm(forms.ModelForm):
     '''A form to update a profile'''
     class Meta:
         model = UserProfile
-        fields = ['username', 'email', 'profile_image_url']
+        fields = [ 'email', 'profile_image_url']
 
 
 class ReceiptUploadForm(forms.ModelForm):

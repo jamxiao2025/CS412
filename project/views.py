@@ -63,7 +63,11 @@ class ShowReceiptPageView(DetailView):
     model = Receipt 
     template_name = 'project/show_receipt.html'
     context_object_name = 'receipt'
-
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        profile = UserProfile.objects.get(user=self.request.user)
+        context['profile'] = profile 
+        return context
 class UpdateUserProfileForm(LoginRequiredMixin,UpdateView):
     model = UserProfile
     form_class = UpdateUserProfileForm
@@ -394,7 +398,7 @@ class LeaderboardView(View):
             total_categories_bought = items.values('category').distinct().count()
 
             leaderboard_data.append({
-                'username': user.username,
+                'username': user.email,
                 'stores_shopped_from': stores_shopped_from,
                 'total_quantity_bought': total_quantity_bought,
                 'total_categories_bought': total_categories_bought,
@@ -439,7 +443,7 @@ class LeaderboardView(View):
 
             # Append the data for the current user
             category_comparison_data.append({
-                'username': user.username,
+                'username': user.email,
                 **category_totals
             })
 
