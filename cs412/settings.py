@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'quotes',
     'restaurant',
     'mini_fb',
+    'project',
     'voter_analytics',
 ]
 
